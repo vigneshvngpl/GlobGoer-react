@@ -1,0 +1,6 @@
+{
+  "airports": [
+    { "city": "Kenya", "airport": "Moi Intl, Mombasa" },
+    { "city": "Nairobi", "airport": "JFK Terminal, Nairobi" }
+  ]
+}

@@ -6,6 +6,8 @@ const initialState = {
   baggage: [],
   departureRange: [0, 1439],
   arrivalRange: [0, 1439],
+
+  
 };
 
 const filterSlice = createSlice({

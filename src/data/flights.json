@@ -1,270 +1,191 @@
 {
   "flights": [
     {
-      "id": 1,
-      "airline": "ABC Airline",
+      "id": 9,
+      "airline": "Delta Airlines",
       "travelClass": "Economy",
-      "price": 18500,
-      "duration": "9hr 50min",
-      "durationMinutes": 590,
+      "price": 54000,
+      "duration": "15hr 20min",
+      "durationMinutes": 920,
       "refundable": "Partially Refundable",
-      "seatsRemaining": 100,
-      "stops": 0,
-      "baggage": ["carry-on"],
-      "departure": {
-        "time": "14:50",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "Moi Intl, Mombasa",
-        "city": "Kenya",
-        "timestamp": "2023-01-29T14:50:00"
-      },
-      "arrival": {
-        "time": "14:50",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "JFK Terminal, Nairobi",
-        "city": "Kenya",
-        "timestamp": "2023-01-30T00:40:00"
-      },
-      "tags": []
-    },
-    {
-      "id": 2,
-      "airline": "ABC Airlines",
-      "travelClass": "Economy",
-      "price": 18500,
-      "duration": "9hr 50min",
-      "durationMinutes": 590,
-      "refundable": "Partially Refundable",
-      "seatsRemaining": 100,
+      "seatsRemaining": 80,
       "stops": 1,
       "baggage": ["carry-on", "checked"],
       "departure": {
-        "time": "14:50",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "Moi Intl, Mombasa",
-        "city": "Kenya",
-        "timestamp": "2023-01-29T14:50:00"
+        "time": "08:10",
+        "date": "Wed, 01 Feb 2023",
+        "airport": "John F Kennedy International Airport",
+        "city": "New York",
+        "timestamp": "2023-02-01T08:10:00"
       },
       "arrival": {
-        "time": "14:50",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "JFK Terminal, Nairobi",
-        "city": "Kenya",
-        "timestamp": "2023-01-30T00:40:00"
+        "time": "22:30",
+        "date": "Wed, 01 Feb 2023",
+        "airport": "Heathrow Airport",
+        "city": "London",
+        "timestamp": "2023-02-01T22:30:00"
       },
       "tags": []
     },
     {
-      "id": 3,
-      "airline": "XYZ Airways",
+      "id": 10,
+      "airline": "Emirates",
+      "travelClass": "Business",
+      "price": 87000,
+      "duration": "13hr 50min",
+      "durationMinutes": 830,
+      "refundable": "Fully refundable",
+      "seatsRemaining": 25,
+      "stops": 0,
+      "baggage": ["carry-on", "checked"],
+      "departure": {
+        "time": "03:00",
+        "date": "Thu, 02 Feb 2023",
+        "airport": "Dubai International Airport",
+        "city": "Dubai",
+        "timestamp": "2023-02-02T03:00:00"
+      },
+      "arrival": {
+        "time": "09:50",
+        "date": "Thu, 02 Feb 2023",
+        "airport": "Changi Airport",
+        "city": "Singapore",
+        "timestamp": "2023-02-02T09:50:00"
+      },
+      "tags": []
+    },
+    {
+      "id": 11,
+      "airline": "Air India",
       "travelClass": "Economy",
-      "price": 15200,
-      "duration": "8hr 30min",
-      "durationMinutes": 510,
+      "price": 36000,
+      "duration": "9hr 15min",
+      "durationMinutes": 555,
       "refundable": "Non-refundable",
-      "seatsRemaining": 50,
+      "seatsRemaining": 140,
       "stops": 0,
       "baggage": ["carry-on"],
       "departure": {
-        "time": "06:00",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "Moi Intl, Mombasa",
-        "city": "Kenya",
-        "timestamp": "2023-01-29T06:00:00"
+        "time": "21:30",
+        "date": "Fri, 03 Feb 2023",
+        "airport": "Indira Gandhi International Airport",
+        "city": "Delhi",
+        "timestamp": "2023-02-03T21:30:00"
       },
       "arrival": {
-        "time": "14:30",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "JFK Terminal, Nairobi",
-        "city": "Kenya",
-        "timestamp": "2023-01-29T14:30:00"
-      },
-      "returnFlight": {
-        "departure": {
-          "time": "14:50",
-          "date": "Sun, 29 Jan 2023",
-          "airport": "Moi Intl, Mombasa",
-          "city": "Kenya",
-          "timestamp": "2023-01-29T14:50:00"
-        },
-        "arrival": {
-          "time": "14:50",
-          "date": "Sun, 29 Jan 2023",
-          "airport": "JFK Terminal, Nairobi",
-          "city": "Kenya",
-          "timestamp": "2023-01-30T00:40:00"
-        }
-      },
-      "tags": ["Separate tickets booked together for cheaper price", "Change of Terminal", "Self Transfer", "7kg"]
-    },
-    {
-      "id": 4,
-      "airline": "BOP Links",
-      "travelClass": "Business",
-      "price": 32000,
-      "duration": "11hr 00min",
-      "durationMinutes": 660,
-      "refundable": "Fully refundable",
-      "seatsRemaining": 20,
-      "stops": 2,
-      "baggage": ["carry-on", "checked"],
-      "departure": {
-        "time": "09:00",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "Moi Intl, Mombasa",
-        "city": "Kenya",
-        "timestamp": "2023-01-29T09:00:00"
-      },
-      "arrival": {
-        "time": "20:00",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "JFK Terminal, Nairobi",
-        "city": "Kenya",
-        "timestamp": "2023-01-29T20:00:00"
-      },
-      "returnFlight": {
-        "departure": {
-          "time": "14:50",
-          "date": "Sun, 29 Jan 2023",
-          "airport": "Moi Intl, Mombasa",
-          "city": "Kenya",
-          "timestamp": "2023-01-29T14:50:00"
-        },
-        "arrival": {
-          "time": "14:50",
-          "date": "Sun, 29 Jan 2023",
-          "airport": "JFK Terminal, Nairobi",
-          "city": "Kenya",
-          "timestamp": "2023-01-30T00:40:00"
-        }
+        "time": "06:45",
+        "date": "Sat, 04 Feb 2023",
+        "airport": "Charles de Gaulle Airport",
+        "city": "Paris",
+        "timestamp": "2023-02-04T06:45:00"
       },
       "tags": []
     },
     {
-      "id": 5,
-      "airline": "EDF Express",
+      "id": 12,
+      "airline": "Qantas",
       "travelClass": "First Class",
-      "price": 45000,
-      "duration": "7hr 15min",
-      "durationMinutes": 435,
+      "price": 120000,
+      "duration": "16hr 00min",
+      "durationMinutes": 960,
       "refundable": "Fully refundable",
-      "seatsRemaining": 8,
-      "stops": 0,
+      "seatsRemaining": 12,
+      "stops": 1,
       "baggage": ["carry-on", "checked"],
       "departure": {
-        "time": "22:00",
-        "date": "Sun, 29 Jan 2023",
-        "airport": "Moi Intl, Mombasa",
-        "city": "Kenya",
-        "timestamp": "2023-01-29T22:00:00"
+        "time": "10:45",
+        "date": "Sat, 04 Feb 2023",
+        "airport": "Sydney Kingsford Smith Airport",
+        "city": "Sydney",
+        "timestamp": "2023-02-04T10:45:00"
       },
       "arrival": {
-        "time": "05:15",
-        "date": "Mon, 30 Jan 2023",
-        "airport": "JFK Terminal, Nairobi",
-        "city": "Kenya",
-        "timestamp": "2023-01-30T05:15:00"
+        "time": "19:00",
+        "date": "Sat, 04 Feb 2023",
+        "airport": "Los Angeles International Airport",
+        "city": "Los Angeles",
+        "timestamp": "2023-02-04T19:00:00"
       },
       "tags": []
     },
     {
-      "id": 6,
-      "airline": "ABC Air Technologies",
+      "id": 13,
+      "airline": "Lufthansa",
+      "travelClass": "Business",
+      "price": 74000,
+      "duration": "10hr 40min",
+      "durationMinutes": 640,
+      "refundable": "Partially Refundable",
+      "seatsRemaining": 35,
+      "stops": 0,
+      "baggage": ["carry-on", "checked"],
+      "departure": {
+        "time": "16:30",
+        "date": "Sun, 05 Feb 2023",
+        "airport": "Frankfurt Airport",
+        "city": "Frankfurt",
+        "timestamp": "2023-02-05T16:30:00"
+      },
+      "arrival": {
+        "time": "02:10",
+        "date": "Mon, 06 Feb 2023",
+        "airport": "Dubai International Airport",
+        "city": "Dubai",
+        "timestamp": "2023-02-06T02:10:00"
+      },
+      "tags": []
+    },
+    {
+      "id": 14,
+      "airline": "United Airlines",
       "travelClass": "Economy",
-      "price": 12900,
-      "duration": "10hr 45min",
-      "durationMinutes": 645,
+      "price": 48000,
+      "duration": "11hr 20min",
+      "durationMinutes": 680,
       "refundable": "Non-refundable",
-      "seatsRemaining": 200,
+      "seatsRemaining": 95,
       "stops": 1,
       "baggage": ["carry-on"],
       "departure": {
-        "time": "05:00",
-        "date": "Mon, 30 Jan 2023",
-        "airport": "Moi Intl, Mombasa",
-        "city": "Kenya",
-        "timestamp": "2023-01-30T05:00:00"
+        "time": "12:00",
+        "date": "Mon, 06 Feb 2023",
+        "airport": "San Francisco International Airport",
+        "city": "San Francisco",
+        "timestamp": "2023-02-06T12:00:00"
       },
       "arrival": {
-        "time": "15:45",
-        "date": "Mon, 30 Jan 2023",
-        "airport": "JFK Terminal, Nairobi",
-        "city": "Kenya",
-        "timestamp": "2023-01-30T15:45:00"
+        "time": "23:20",
+        "date": "Mon, 06 Feb 2023",
+        "airport": "Tokyo International Airport",
+        "city": "Tokyo",
+        "timestamp": "2023-02-06T23:20:00"
       },
       "tags": []
-    },
-    {
-      "id": 7,
-      "airline": "XYZ Airways",
-      "travelClass": "Business",
-      "price": 28000,
-      "duration": "8hr 00min",
-      "durationMinutes": 480,
-      "refundable": "Partially Refundable",
-      "seatsRemaining": 15,
-      "stops": 0,
-      "baggage": ["carry-on", "checked"],
-      "departure": {
-        "time": "11:30",
-        "date": "Mon, 30 Jan 2023",
-        "airport": "Moi Intl, Mombasa",
-        "city": "Kenya",
-        "timestamp": "2023-01-30T11:30:00"
-      },
-      "arrival": {
-        "time": "19:30",
-        "date": "Mon, 30 Jan 2023",
-        "airport": "JFK Terminal, Nairobi",
-        "city": "Kenya",
-        "timestamp": "2023-01-30T19:30:00"
-      },
-      "tags": []
-    },
-    {
-      "id": 8,
-      "airline": "BOP Links",
-      "travelClass": "Economy",
-      "price": 9900,
-      "duration": "12hr 20min",
-      "durationMinutes": 740,
-      "refundable": "Non-refundable",
-      "seatsRemaining": 300,
-      "stops": 2,
-      "baggage": ["carry-on"],
-      "departure": {
-        "time": "23:59",
-        "date": "Mon, 30 Jan 2023",
-        "airport": "Moi Intl, Mombasa",
-        "city": "Kenya",
-        "timestamp": "2023-01-30T23:59:00"
-      },
-      "arrival": {
-        "time": "12:19",
-        "date": "Tue, 31 Jan 2023",
-        "airport": "JFK Terminal, Nairobi",
-        "city": "Kenya",
-        "timestamp": "2023-01-31T12:19:00"
-      },
-      "tags": ["Separate tickets booked together for cheaper price", "7kg"]
     }
   ],
+
   "filterOptions": {
-  "stops": [
-    { "label": "Non-stop", "price": "$500", "value": 0 },
-    { "label": "1 Stop", "price": "$450", "value": 1 },
-    { "label": "2+ Stops", "price": "$400", "value": 2 }
-  ],
+    "stops": [
+      { "label": "Non-stop", "value": 0 },
+      { "label": "1 Stop", "value": 1 },
+      { "label": "2+ Stops", "value": 2 }
+    ],
     "airlines": [
-      { "value": "ABC Air Technologies", "label": "ABC Air Technologies", "price": "$203" },
-      { "value": "ABC Airlines", "label": "ABC Airlines", "price": "$160" },
-      { "value": "XYZ Airways", "label": "XYZ Airways", "price": "$212" },
-      { "value": "BOP Links", "label": "BOP Links", "price": "$129" },
-      { "value": "EDF Express", "label": "EDF Express", "price": "$190" }
+      { "value": "Delta Airlines", "label": "Delta Airlines" },
+      { "value": "Emirates", "label": "Emirates" },
+      { "value": "Air India", "label": "Air India" },
+      { "value": "Qantas", "label": "Qantas" },
+      { "value": "Lufthansa", "label": "Lufthansa" },
+      { "value": "United Airlines", "label": "United Airlines" }
     ],
     "baggage": [
-      { "value": "carry-on", "label": "Carry-on bag", "price": "$129" },
-      { "value": "checked", "label": "Checked bag", "price": "$99" }
+      { "value": "carry-on", "label": "Carry-on bag" },
+      { "value": "checked", "label": "Checked bag" }
+    ],
+    "travelClass": [
+      { "value": "Economy", "label": "Economy" },
+      { "value": "Business", "label": "Business" },
+      { "value": "First Class", "label": "First Class" }
     ]
   }
 }

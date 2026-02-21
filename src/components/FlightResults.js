@@ -1,93 +1,113 @@
 import React, { useState, useMemo } from 'react';
 import { useAppSelector } from '../store/hooks';
 import FlightCard from './FlightCard';
-import flightData from '../data/flights.json';
 import './FlightResults.css';
 import tabs from "../data/tabsData.json";
-
-const allFlights = flightData.flights;
 
 function timeToMinutes(time) {
   const [h, m] = time.split(':').map(Number);
   return h * 60 + m;
 }
 
-
-
 export default function FlightResults() {
+
   const [sortTab, setSortTab] = useState('recommended');
+  const searchResults = useAppSelector(state => state.search.results);
+  const searched = useAppSelector(state => state.search.searched);
   const filters = useAppSelector(state => state.filters);
 
-const filteredAndSorted = useMemo(() => {
+  const filteredAndSorted = useMemo(() => {
 
-  const filtered = allFlights.filter(f => {
+    if (!searched) return [];
 
-  if (filters.stops.length > 0) {
-  const stopMatch = filters.stops.some(s =>
-    s === 2 ? f.stops >= 2 : f.stops === s
-  );
+    const filtered = searchResults.filter(f => {
 
-  if (!stopMatch) return false;
-}
+      if (filters.stops.length > 0) {
+        const stopMatch = filters.stops.some(s =>
+          s === 2 ? f.stops >= 2 : f.stops === s
+        );
+        if (!stopMatch) return false;
+      }
 
+      if (
+        filters.airlines.length > 0 &&
+        !filters.airlines.includes(f.airline)
+      ) {
+        return false;
+      }
 
-    if (filters.airlines.length > 0 &&
-        !filters.airlines.includes(f.airline)) {
-      return false;
-    }
+      if (
+        filters.baggage.length > 0 &&
+        !filters.baggage.every(b => f.baggage.includes(b))
+      ) {
+        return false;
+      }
 
- 
-    if (filters.baggage.length > 0 &&
-        !filters.baggage.every(b => f.baggage.includes(b))) {
-      return false;
-    }
+      const depMins = timeToMinutes(f.departure.time);
+      if (
+        depMins < filters.departureRange[0] ||
+        depMins > filters.departureRange[1]
+      ) {
+        return false;
+      }
 
+      const arrMins = timeToMinutes(f.arrival.time);
+      if (
+        arrMins < filters.arrivalRange[0] ||
+        arrMins > filters.arrivalRange[1]
+      ) {
+        return false;
+      }
 
-    const depMins = timeToMinutes(f.departure.time);
-    if (depMins < filters.departureRange[0] ||
-        depMins > filters.departureRange[1]) {
-      return false;
-    }
+      return true;
+    });
 
+    return filtered.sort((a, b) => {
 
-    const arrMins = timeToMinutes(f.arrival.time);
-    if (arrMins < filters.arrivalRange[0] ||
-        arrMins > filters.arrivalRange[1]) {
-      return false;
-    }
+      if (sortTab === 'fastest')
+        return a.durationMinutes - b.durationMinutes;
 
-    return true;
-  });
+      if (sortTab === 'cheapest')
+        return a.price - b.price;
 
-  return filtered.sort((a, b) => {
-    if (sortTab === 'fastest')
-      return a.durationMinutes - b.durationMinutes;
+      const scoreA = a.price / 1000 + a.durationMinutes / 60;
+      const scoreB = b.price / 1000 + b.durationMinutes / 60;
+      return scoreA - scoreB;
+    });
 
-    if (sortTab === 'cheapest')
-      return a.price - b.price;
+  }, [filters, sortTab, searchResults, searched]);
 
-    // recommended
-    const scoreA = a.price / 1000 + a.durationMinutes / 60;
-    const scoreB = b.price / 1000 + b.durationMinutes / 60;
-    return scoreA - scoreB;
-  });
-
-}, [filters, sortTab]);
+  if (!searched) {
+    return (
+      <div className="flight-results">
+        <div className="no-flights">
+          <div className="no-flights-icon">✈️</div>
+          <p className="no-flights-title">
+            Select departure and destination to search flights
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flight-results">
+
+      
       <div className="results-tabs">
         {tabs.map(tab => (
           <button
             key={tab.value}
             onClick={() => setSortTab(tab.value)}
-            className={`results-tab ${sortTab === tab.value ? 'results-tab--active' : ''}`}
+            className={`results-tab ${
+              sortTab === tab.value ? 'results-tab--active' : ''
+            }`}
           >
-           <img 
-  src={tab.image} 
-  alt={tab.name} 
-  className="tab-icon"
-/>
+            <img
+              src={tab.image}
+              alt={tab.name}
+              className="tab-icon"
+            />
             <div>
               <div className="tab-label">{tab.label}</div>
               <div className="tab-price">{tab.price}</div>
@@ -96,19 +116,28 @@ const filteredAndSorted = useMemo(() => {
         ))}
       </div>
 
+      
       {filteredAndSorted.length === 0 ? (
         <div className="no-flights">
           <div className="no-flights-icon">✈️</div>
-          <p className="no-flights-title">No flights match your filters</p>
-          <p className="no-flights-sub">Try adjusting or resetting your filters</p>
+          <p className="no-flights-title">
+            No flights match your filters
+          </p>
+          <p className="no-flights-sub">
+            Try adjusting or resetting your filters
+          </p>
         </div>
       ) : (
         <div>
           {filteredAndSorted.map(flight => (
-            <FlightCard key={flight.id} flight={flight} />
+            <FlightCard
+              key={flight.id}
+              flight={flight}
+            />
           ))}
         </div>
       )}
+
     </div>
   );
 }
