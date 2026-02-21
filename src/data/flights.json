@@ -250,11 +250,11 @@
     }
   ],
   "filterOptions": {
-    "stops": [
-      { "value": "nonstop", "label": "Nonstop(23)", "price": "$110", "count": 23 },
-      { "value": "1stop", "label": "1 Stop (4)", "price": "$324", "count": 4 },
-      { "value": "2plus", "label": "2+ Stops (2)", "price": "$349", "count": 2 }
-    ],
+  "stops": [
+    { "label": "Non-stop", "price": "$500", "value": 0 },
+    { "label": "1 Stop", "price": "$450", "value": 1 },
+    { "label": "2+ Stops", "price": "$400", "value": 2 }
+  ],
     "airlines": [
       { "value": "ABC Air Technologies", "label": "ABC Air Technologies", "price": "$203" },
       { "value": "ABC Airlines", "label": "ABC Airlines", "price": "$160" },

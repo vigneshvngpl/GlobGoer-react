@@ -13,13 +13,15 @@ import flightData from '../data/flights.json';
 import './FilterSidebar.css';
 
 const { filterOptions } = flightData;
-
 function minutesToTime(mins) {
-  const h = Math.floor(mins / 60) % 24;
-  const m = mins % 60;
-  const period = h >= 12 ? 'PM' : 'AM';
-  const hour = h % 12 === 0 ? 12 : h % 12;
-  return `${hour}:${m.toString().padStart(2, '0')} ${period}`;
+  const date = new Date(0); 
+  date.setMinutes(mins);    
+
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
 }
 
 function CheckRow({ label, price, checked, onChange }) {

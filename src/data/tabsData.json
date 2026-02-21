@@ -1,0 +1,20 @@
+[
+  {
+    "label": "Recommended",
+    "image": "/FlightListing/recomended.png",
+    "price": "$500 - 10h 20m",
+    "value": "recommended"
+  },
+  {
+    "label": "Fastest",
+    "image": "/FlightListing/Fastest.png",
+    "price": "$500 - 10h 20m",
+    "value": "fastest"
+  },
+  {
+    "label": "Cheapest",
+    "image": "/FlightListing/Cheapest.png",
+    "price": "$500 - 10h 20m",
+    "value": "cheapest"
+  }
+]

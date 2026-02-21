@@ -1,7 +1,10 @@
 .searchbar {
   background: #fff;
   border-bottom: 1px solid #e5e7eb;
-  padding: 20px 40px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .searchbar-icon {
   width: 18px;
@@ -13,6 +16,10 @@
   display: flex;
   gap: 12px;
   margin-bottom: 16px;
+  width: 100%;
+  max-width: 1200px;
+  
+
 }
 
 .searchbar-select {
@@ -34,6 +41,8 @@
 
 .searchbar-bottom {
   display: flex;
+  width: 100%;
+  max-width: 1200px;
   gap: 12px;
   align-items: center;
 }

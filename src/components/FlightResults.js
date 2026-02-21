@@ -3,6 +3,7 @@ import { useAppSelector } from '../store/hooks';
 import FlightCard from './FlightCard';
 import flightData from '../data/flights.json';
 import './FlightResults.css';
+import tabs from "../data/tabsData.json";
 
 const allFlights = flightData.flights;
 
@@ -11,64 +12,67 @@ function timeToMinutes(time) {
   return h * 60 + m;
 }
 
-const tabs = [
-  { label: 'Recommended', image: 'FlightListing/recomended.png', price: '$500 - 10h 20m', value: 'recommended' },
-  { label: 'Fastest',     image: 'FlightListing/Fastest.png', price: '$500 - 10h 20m', value: 'fastest'     },
-  { label: 'Cheapest',    image: 'FlightListing/Cheapest.png', price: '$500 - 10h 20m', value: 'cheapest'    },
-];
+
 
 export default function FlightResults() {
   const [sortTab, setSortTab] = useState('recommended');
   const filters = useAppSelector(state => state.filters);
 
-  const filteredAndSorted = useMemo(() => {
-    let result = [...allFlights];
+const filteredAndSorted = useMemo(() => {
 
-    if (filters.stops.length > 0) {
-      result = result.filter(f =>
-        filters.stops.some(s => {
-          if (s === 'nonstop') return f.stops === 0;
-          if (s === '1stop')   return f.stops === 1;
-          if (s === '2plus')   return f.stops >= 2;
-          return false;
-        })
-      );
+  const filtered = allFlights.filter(f => {
+
+  if (filters.stops.length > 0) {
+  const stopMatch = filters.stops.some(s =>
+    s === 2 ? f.stops >= 2 : f.stops === s
+  );
+
+  if (!stopMatch) return false;
+}
+
+
+    if (filters.airlines.length > 0 &&
+        !filters.airlines.includes(f.airline)) {
+      return false;
     }
 
-    if (filters.airlines.length > 0) {
-      result = result.filter(f => filters.airlines.includes(f.airline));
+ 
+    if (filters.baggage.length > 0 &&
+        !filters.baggage.every(b => f.baggage.includes(b))) {
+      return false;
     }
 
-    if (filters.baggage.length > 0) {
-      result = result.filter(f =>
-        filters.baggage.every(b => f.baggage.includes(b))
-      );
+
+    const depMins = timeToMinutes(f.departure.time);
+    if (depMins < filters.departureRange[0] ||
+        depMins > filters.departureRange[1]) {
+      return false;
     }
 
-    result = result.filter(f => {
-      const mins = timeToMinutes(f.departure.time);
-      return mins >= filters.departureRange[0] && mins <= filters.departureRange[1];
-    });
 
-    result = result.filter(f => {
-      const mins = timeToMinutes(f.arrival.time);
-      return mins >= filters.arrivalRange[0] && mins <= filters.arrivalRange[1];
-    });
-
-    if (sortTab === 'fastest') {
-      result.sort((a, b) => a.durationMinutes - b.durationMinutes);
-    } else if (sortTab === 'cheapest') {
-      result.sort((a, b) => a.price - b.price);
-    } else {
-      result.sort((a, b) => {
-        const scoreA = a.price / 1000 + a.durationMinutes / 60;
-        const scoreB = b.price / 1000 + b.durationMinutes / 60;
-        return scoreA - scoreB;
-      });
+    const arrMins = timeToMinutes(f.arrival.time);
+    if (arrMins < filters.arrivalRange[0] ||
+        arrMins > filters.arrivalRange[1]) {
+      return false;
     }
 
-    return result;
-  }, [filters, sortTab]);
+    return true;
+  });
+
+  return filtered.sort((a, b) => {
+    if (sortTab === 'fastest')
+      return a.durationMinutes - b.durationMinutes;
+
+    if (sortTab === 'cheapest')
+      return a.price - b.price;
+
+    // recommended
+    const scoreA = a.price / 1000 + a.durationMinutes / 60;
+    const scoreB = b.price / 1000 + b.durationMinutes / 60;
+    return scoreA - scoreB;
+  });
+
+}, [filters, sortTab]);
 
   return (
     <div className="flight-results">
