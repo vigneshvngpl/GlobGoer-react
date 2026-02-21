@@ -81,7 +81,7 @@ export default function FlightResults() {
     return (
       <div className="flight-results">
         <div className="no-flights">
-          <div className="no-flights-icon">✈️</div>
+        
           <p className="no-flights-title">
             Select departure and destination to search flights
           </p>
@@ -119,7 +119,7 @@ export default function FlightResults() {
       
       {filteredAndSorted.length === 0 ? (
         <div className="no-flights">
-          <div className="no-flights-icon">✈️</div>
+         
           <p className="no-flights-title">
             No flights match your filters
           </p>
