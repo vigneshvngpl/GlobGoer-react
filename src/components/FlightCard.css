@@ -1,0 +1,259 @@
+.flight-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.flight-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.flight-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.flight-airline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.airline-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.airline-name {
+  font-weight: 600;
+  font-size: 16px;
+  font-style: semi-bold;
+  
+}
+
+.flight-class {
+  font-size: 16px;
+   font-weight: 400;
+}
+
+.flight-class strong {
+  color: #4b5563;
+     font-weight: 600;
+       font-style: semi-bold;
+}
+
+.flight-card-body {
+  display: flex;
+}
+
+.flight-routes {
+  flex: 1;
+}
+
+.route-segment {
+  background: rgba(255, 241, 228, 1);
+  padding: 16px 20px;
+  margin-left: 20px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.route-date {
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.route-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.route-endpoint {
+  display: flex;
+  flex-direction: column;
+  min-width: 90px;
+}
+
+.route-endpoint--right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.route-time {
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.route-airport {
+  font-size: 12px;
+
+  margin-top: 4px;
+}
+
+.route-city {
+  font-size: 12px;
+
+}
+
+.route-line {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.route-duration {
+  font-size: 12px;
+
+}
+
+.route-track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 4px;
+}
+
+.route-dash {
+  flex: 1;
+  height: 1px;
+
+}
+
+.route-plane {
+  color: rgba(93, 54, 175, 1);
+  font-size: 14px;
+}
+
+.flight-price-block {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  padding: 16px 20px;
+  gap: 12px;
+  min-width: 130px;
+
+  border-left: 1px solid #f3f4f6;
+}
+
+.flight-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.flight-book-btn {
+  background: rgba(93, 54, 175, 1);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.flight-book-btn:hover {
+  background: #5b21b6;
+}
+
+.flight-card-footer {
+  display: flex;
+justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  font-size: 12px;
+}
+
+.seats-remaining {
+  color: #9ca3af;
+
+}
+
+.refund-status {
+  font-weight: 500;
+}
+
+.refund-partial { color: #d97706; }
+.refund-none    { color: #ef4444; }
+.refund-full    { color: #16a34a; }
+
+.view-details-btn {
+  color: rgba(93, 54, 175, 1);
+  text-decoration: underline;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.flight-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 20px;
+  background: #f9fafb;
+  border-top: 1px solid #f3f4f6;
+}
+
+@media (max-width: 767px) {
+  .flight-card-body {
+    flex-direction: column;
+    gap: 0;
+  }
+  .flight-price-block {
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
+    border-left: none;
+    border-top: 1px solid #f3f4f6;
+    padding: 12px 16px;
+  }
+  .route-segment {
+    padding: 12px 16px;
+  }
+  .flight-card-header,
+  .flight-card-footer,
+  .flight-tags {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .route-row {
+    flex-wrap: wrap;
+  }
+  .route-endpoint {
+    min-width: 72px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .flight-price-block { min-width: 120px; }
+}
+
+.flight-tag {
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tag-icon {
+  color: #a78bfa;
+}

@@ -1,0 +1,86 @@
+.right-sidebar {
+  width: 100%;
+  max-width: 208px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.sidebar-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-card-banner {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+.sidebar-card-body {
+  padding: 16px;
+}
+
+.sidebar-card-title {
+  font-size: 16px;
+  font-weight: 600;
+font-style: semi-bold;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.sidebar-card-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+    font-weight: 400;
+font-style: semi-bold;
+}
+
+.sidebar-card-btn {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(93, 54, 175, 1);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(93, 54, 175, 1);
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+
+.sidebar-card-btn:hover {
+  background: rgba(93, 54, 175, 1);
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .right-sidebar {
+    width: 100%;
+    max-width: none;
+    gap: 12px;
+  }
+
+  .sidebar-card-banner {
+    height: 96px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .right-sidebar {
+    max-width: 308px;
+  }
+}

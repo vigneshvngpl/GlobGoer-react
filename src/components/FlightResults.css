@@ -1,0 +1,83 @@
+.flight-results {
+  flex: 1;
+  min-width: 0;
+}
+
+.results-tabs {
+  display: flex;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.results-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border: none;
+  border-right: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: left;
+  background: #fff;
+  font-family: inherit;
+}
+
+.results-tab:last-child {
+  border-right: none;
+}
+
+.results-tab:hover {
+  background: #f9fafb;
+}
+
+.results-tab--active {
+  border-bottom: 2px solid rgba(93, 54, 175, 1);
+  background: #f9fafb;
+}
+
+.tab-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.tab-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.tab-price {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+.no-flights {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.no-flights-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.no-flights-title {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.no-flights-sub {
+  font-size: 14px;
+  margin-top: 4px;
+}
