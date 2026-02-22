@@ -1,27 +1,43 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DatePicker, theme } from 'antd';
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import searchBarOptions from '../data/Searchbaroptions';
-import './SearchBar.css';
-import { useDispatch } from 'react-redux';
 import { setSearchParams } from '../store/searchSlice';
+import { searchValidationSchema } from "../validation/searchValidation";
 import CityDropdown from './CityDropdown';
+import './SearchBar.css';
 
 const { RangePicker } = DatePicker;
 
 export default function SearchBar() {
-  const [from, setFrom] = useState(null);
-  const [to, setTo] = useState(null);
   const dispatch = useDispatch();
-
-  const [flightType, setFlightType] = useState('');
-  const [travelClass, setTravelClass] = useState('');
-  const [tripType, setTripType] = useState('');
-
-  const [departDate, setDepartDate] = useState(null);
-  const [returnDate, setReturnDate] = useState(null);
-
   const { token } = theme.useToken();
-  const isRoundTrip = flightType === 'round';
+
+  const formik = useFormik({
+    initialValues: {
+      from: null,
+      to: null,
+      flightType: "",
+      travelClass: "",
+      tripType: "",
+      departDate: null,
+      returnDate: null,
+    },
+    validationSchema: searchValidationSchema,
+    onSubmit: (values) => {
+      dispatch(
+        setSearchParams({
+          fromCity: values.from?.city || null,
+          toCity: values.to?.city || null,
+          tripType: values.tripType,
+          travelClass: values.travelClass,
+        })
+      );
+    },
+  });
+
+  const isRoundTrip = formik.values.flightType === "round";
 
   const cellRender = (current, info) => {
     const style = {
@@ -41,97 +57,119 @@ export default function SearchBar() {
     );
   };
 
-  const handleSearch = () => {
-    dispatch(
-      setSearchParams({
-        fromCity: from?.city || null,
-        toCity: to?.city || null,
-        tripType,
-        travelClass,
-      })
-    );
-  };
-
   return (
-    <section className="searchbar">
+    <form onSubmit={formik.handleSubmit} className="searchbar">
+
       <div className="searchbar-top">
-
-        <select
-          className="searchbar-select"
-          value={flightType}
-          onChange={(e) => setFlightType(e.target.value)}
-        >
-          <option value="">
-            {searchBarOptions.flightType.placeholder}
-          </option>
-          {searchBarOptions.flightType.options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+        <div>
+          <select
+            name="flightType"
+            value={formik.values.flightType}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className="searchbar-select"
+          >
+            <option value="">
+              {searchBarOptions.flightType.placeholder}
             </option>
-          ))}
-        </select>
+            {searchBarOptions.flightType.options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          {formik.touched.flightType && formik.errors.flightType && (
+            <div className="error-text">{formik.errors.flightType}</div>
+          )}
+        </div>
 
-        <select
-          className="searchbar-select"
-          value={travelClass}
-          onChange={(e) => setTravelClass(e.target.value)}
-        >
-          <option value="">
-            {searchBarOptions.travelClass.placeholder}
-          </option>
-          {searchBarOptions.travelClass.options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+        <div>
+          <select
+            name="travelClass"
+            value={formik.values.travelClass}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className="searchbar-select"
+          >
+            <option value="">
+              {searchBarOptions.travelClass.placeholder}
             </option>
-          ))}
-        </select>
+            {searchBarOptions.travelClass.options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          {formik.touched.travelClass && formik.errors.travelClass && (
+            <div className="error-text">{formik.errors.travelClass}</div>
+          )}
+        </div>
 
-        <select
-          className="searchbar-select"
-          value={tripType}
-          onChange={(e) => setTripType(e.target.value)}
-        >
-          <option value="">
-            {searchBarOptions.tripType.placeholder}
-          </option>
-          {searchBarOptions.tripType.options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+        <div>
+          <select
+            name="tripType"
+            value={formik.values.tripType}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className="searchbar-select"
+          >
+            <option value="">
+              {searchBarOptions.tripType.placeholder}
             </option>
-          ))}
-        </select>
+            {searchBarOptions.tripType.options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          {formik.touched.tripType && formik.errors.tripType && (
+            <div className="error-text">{formik.errors.tripType}</div>
+          )}
+        </div>
 
       </div>
 
       <div className="searchbar-bottom">
 
-        <CityDropdown
-          placeholder="From"
-          icon="/SearchBar/from.png"
-          value={from}
-          onChange={setFrom}
-        />
+        
+        <div>
+          <CityDropdown
+            placeholder="From"
+            icon="/SearchBar/from.png"
+            value={formik.values.from}
+            onChange={(val) => formik.setFieldValue("from", val)}
+          />
+          {formik.touched.from && formik.errors.from && (
+            <div className="error-text">{formik.errors.from}</div>
+          )}
+        </div>
 
         <button
+          type="button"
           className="searchbar-swap"
           onClick={() => {
-            const temp = from;
-            setFrom(to);
-            setTo(temp);
+            const temp = formik.values.from;
+            formik.setFieldValue("from", formik.values.to);
+            formik.setFieldValue("to", temp);
           }}
         >
-          <img src="/SearchBar/swap.png" alt="swap icon" className="searchbar-icon" />
+          <img src="/SearchBar/swap.png" alt="swap" className="searchbar-icon" />
         </button>
-
-        <CityDropdown
-          placeholder="To"
-          icon="/SearchBar/to.png"
-          value={to}
-          onChange={setTo}
-        />
+        
+        <div>
+          <CityDropdown
+            placeholder="To"
+            icon="/SearchBar/to.png"
+            value={formik.values.to}
+            onChange={(val) => formik.setFieldValue("to", val)}
+          />
+          {formik.touched.to && formik.errors.to && (
+            <div className="error-text">{formik.errors.to}</div>
+          )}
+        </div>
 
         <div className="searchbar-input-wrap searchbar-date-wrap">
-          <img src="/SearchBar/date.png" alt="date icon" className="searchbar-icon" />
+          <img src="/SearchBar/date.png" alt="date" className="searchbar-icon" />
 
           {isRoundTrip ? (
             <RangePicker
@@ -140,8 +178,8 @@ export default function SearchBar() {
               variant="borderless"
               className="searchbar-antd-picker"
               onChange={(dates) => {
-                setDepartDate(dates?.[0] ?? null);
-                setReturnDate(dates?.[1] ?? null);
+                formik.setFieldValue("departDate", dates?.[0] ?? null);
+                formik.setFieldValue("returnDate", dates?.[1] ?? null);
               }}
             />
           ) : (
@@ -150,15 +188,24 @@ export default function SearchBar() {
               placeholder="Departing"
               variant="borderless"
               className="searchbar-antd-picker"
-              onChange={(date) => setDepartDate(date)}
+              onChange={(date) =>
+                formik.setFieldValue("departDate", date)
+              }
             />
           )}
         </div>
 
+        {(formik.touched.departDate && formik.errors.departDate) && (
+          <div className="error-text">{formik.errors.departDate}</div>
+        )}
+
+        {(formik.touched.returnDate && formik.errors.returnDate) && (
+          <div className="error-text">{formik.errors.returnDate}</div>
+        )}
         <div className="searchbar-input-wrap">
           <img
             src="/SearchBar/passengers.png"
-            alt="passengers icon"
+            alt="passengers"
             className="searchbar-icon"
           />
           <input
@@ -167,10 +214,9 @@ export default function SearchBar() {
             className="searchbar-input"
           />
         </div>
-
         <button
+          type="submit"
           className="searchbar-search-btn"
-          onClick={handleSearch}
         >
           <img
             src="/SearchBar/search.png"
@@ -181,6 +227,6 @@ export default function SearchBar() {
         </button>
 
       </div>
-    </section>
+    </form>
   );
 }
