@@ -34,7 +34,7 @@ function CheckRow({ label, price, checked, onChange }) {
         className="check-input"
       />
       <span className="check-label">{label}</span>
-      <span className="check-price">{price}</span>
+      <span className="check-price">$ {price}</span>
     </label>
   );
 }

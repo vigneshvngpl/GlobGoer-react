@@ -3,38 +3,32 @@ import * as Yup from "yup";
 export const searchValidationSchema = Yup.object({
   from: Yup.object()
     .nullable()
-    .required("From city is required"),
-
-  to: Yup.object()
-    .nullable()
-    .required("To city is required")
     .test(
-      "not-same-city",
-      "From and To cities cannot be same",
-      function (value) {
-        return value?.city !== this.parent.from?.city;
+      "from-required-if-to",
+      "from city is required",
+      function(value){
+        const {to}=this.parent
+
+        if(to && !value){
+          return false
+        }
+        return true
       }
     ),
 
-  flightType: Yup.string()
-    .required("Flight type is required"),
-
-  travelClass: Yup.string()
-    .required("Travel class is required"),
-
-  tripType: Yup.string()
-    .required("Trip type is required"),
-
-  departDate: Yup.date()
+  to: Yup.object()
     .nullable()
-    .required("Departure date is required"),
+    .test(
+       "to-required-if-from",
+      "to city is required",
+      function(value){
+        const {from}=this.parent
+        if(from && !value){
+          return false
+        }
+        return true
+      }
+    ),
 
-  returnDate: Yup.date()
-    .nullable()
-    .when("flightType", {
-      is: "round",
-      then: (schema) =>
-        schema.required("Return date is required for round trip"),
-      otherwise: (schema) => schema.nullable(),
-    }),
+  
 });

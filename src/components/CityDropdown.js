@@ -7,6 +7,12 @@ export default function CityDropdown({ placeholder, icon, value, onChange }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef(null);
 
+  useEffect(()=>{
+    if(!value){
+      setQuery("")
+    }
+  })
+
   const filtered = query.trim()
     ? cityData.filter(
         (c) =>

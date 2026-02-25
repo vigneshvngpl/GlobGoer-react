@@ -18,7 +18,7 @@ export default function FlightResults() {
 
   const filteredAndSorted = useMemo(() => {
 
-    if (!searched) return [];
+  
 
     const filtered = searchResults.filter(f => {
 

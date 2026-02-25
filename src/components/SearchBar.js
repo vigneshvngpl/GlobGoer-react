@@ -3,10 +3,11 @@ import { DatePicker, theme } from 'antd';
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import searchBarOptions from '../data/Searchbaroptions';
-import { setSearchParams } from '../store/searchSlice';
+import { resetSearch, setSearchParams } from '../store/searchSlice';
 import { searchValidationSchema } from "../validation/searchValidation";
 import CityDropdown from './CityDropdown';
 import './SearchBar.css';
+
 
 const { RangePicker } = DatePicker;
 
@@ -23,8 +24,10 @@ export default function SearchBar() {
       tripType: "",
       departDate: null,
       returnDate: null,
+      travellers:""
     },
     validationSchema: searchValidationSchema,
+    validateOnMount:false,
     onSubmit: (values) => {
       dispatch(
         setSearchParams({
@@ -32,10 +35,29 @@ export default function SearchBar() {
           toCity: values.to?.city || null,
           tripType: values.tripType,
           travelClass: values.travelClass,
+          flightType:values.flightType,
+          departDate:values.departDate || null,
+          returnDate:values.returnDate || null,
+          travellers:values.travellers || 0
         })
       );
     },
   });
+
+  const handleReset=()=>{
+      dispatch(resetSearch())
+ formik.resetForm({
+  values:formik.initialValues,
+ })
+
+ setTimeout(()=>{
+formik.setTouched({})
+ formik.setErrors({})
+ },0)
+ 
+  
+  
+  }
 
   const isRoundTrip = formik.values.flightType === "round";
 
@@ -71,6 +93,7 @@ export default function SearchBar() {
           >
             <option value="">
               {searchBarOptions.flightType.placeholder}
+              
             </option>
             {searchBarOptions.flightType.options.map((option) => (
               <option key={option.value} value={option.value}>
@@ -188,11 +211,13 @@ export default function SearchBar() {
               placeholder="Departing"
               variant="borderless"
               className="searchbar-antd-picker"
+              value={formik.values.departDate}
               onChange={(date) =>
                 formik.setFieldValue("departDate", date)
               }
             />
           )}
+
         </div>
 
         {(formik.touched.departDate && formik.errors.departDate) && (
@@ -209,9 +234,15 @@ export default function SearchBar() {
             className="searchbar-icon"
           />
           <input
-            type="text"
+            type="number"
             placeholder="Travellers"
+            min={1}
             className="searchbar-input"
+            value={formik.values.travellers}
+            onChange={(e)=>{
+              formik.setFieldValue("travellers",e.target.value)
+            }}
+           
           />
         </div>
         <button
@@ -224,6 +255,14 @@ export default function SearchBar() {
             className="searchbar-icon"
           />
           Search
+        </button>
+          <button
+          onClick={handleReset}
+          type="submit"
+          className="searchbar-search-btn"
+        >
+          
+          Reset
         </button>
 
       </div>
